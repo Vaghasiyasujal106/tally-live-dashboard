@@ -1,0 +1,275 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Company Details</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            text-align: center;-->
+<!--            margin: 0;-->
+<!--            padding: 20px;-->
+<!--        }-->
+<!--        h2 {-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        .company-name {-->
+<!--            font-size: 24px;-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+<!--        table {-->
+<!--            width: 80%;-->
+<!--            margin: 20px auto;-->
+<!--            border-collapse: collapse;-->
+<!--        }-->
+<!--        th, td {-->
+<!--            border: 1px solid #ddd;-->
+<!--            padding: 8px;-->
+<!--            text-align: left;-->
+<!--        }-->
+<!--        th {-->
+<!--            background-color: #f2f2f2;-->
+<!--        }-->
+<!--        .back-button {-->
+<!--            background-color: #008CBA;-->
+<!--            color: white;-->
+<!--            padding: 10px 20px;-->
+<!--            text-align: center;-->
+<!--            text-decoration: none;-->
+<!--            display: inline-block;-->
+<!--            font-size: 16px;-->
+<!--            margin: 4px 2px;-->
+<!--            cursor: pointer;-->
+<!--            border: none;-->
+<!--            border-radius: 4px;-->
+<!--        }-->
+<!--        .back-button:hover {-->
+<!--            background-color: #007B9A;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Company Details</h2>-->
+<!--    <div class="company-name">Company: {{ company_name }}</div>-->
+
+<!--    {% if balance_sheet %}-->
+<!--        <h3>Balance Sheet</h3>-->
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <th>Name</th>-->
+<!--                <th>Parent</th>-->
+<!--                <th>Closing Balance</th>-->
+<!--                <th>Company</th>-->
+<!--            </tr>-->
+<!--            {% for item in balance_sheet %}-->
+<!--                <tr>-->
+<!--                    <td>{{ item.Name }}</td>-->
+<!--                    <td>{{ item.Parent }}</td>-->
+<!--                    <td>{{ item.ClosingBalance }}</td>-->
+<!--                    <td>{{ item.Company }}</td>-->
+<!--                </tr>-->
+<!--            {% endfor %}-->
+<!--        </table>-->
+<!--    {% else %}-->
+<!--        <p>No Balance Sheet data available.</p>-->
+<!--    {% endif %}-->
+
+<!--    {% if profit_loss %}-->
+<!--        <h3>Profit & Loss A/C</h3>-->
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <th>Name</th>-->
+<!--                <th>Primary Group</th>-->
+<!--                <th>Closing Balance</th>-->
+<!--                <th>Company</th>-->
+<!--            </tr>-->
+<!--            {% for item in profit_loss %}-->
+<!--                <tr>-->
+<!--                    <td>{{ item.Name }}</td>-->
+<!--                    <td>{{ item._PrimaryGroup }}</td>-->
+<!--                    <td>{{ item.ClosingBalance }}</td>-->
+<!--                    <td>{{ item.Company }}</td>-->
+<!--                </tr>-->
+<!--            {% endfor %}-->
+<!--        </table>-->
+<!--    {% else %}-->
+<!--        <p>No Profit & Loss data available.</p>-->
+<!--    {% endif %}-->
+
+<!--    {% if trial_balance %}-->
+<!--        <h3>Trial Balance</h3>-->
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <th>Name</th>-->
+<!--                <th>Primary Group</th>-->
+<!--                <th>Opening Balance</th>-->
+<!--                <th>Debit Amount</th>-->
+<!--                <th>Credit Amount</th>-->
+<!--                <th>Closing Balance</th>-->
+<!--                <th>Company</th>-->
+<!--            </tr>-->
+<!--            {% for item in trial_balance %}-->
+<!--                <tr>-->
+<!--                    <td>{{ item.Name }}</td>-->
+<!--                    <td>{{ item._PrimaryGroup }}</td>-->
+<!--                    <td>{{ item.OpeningBalance }}</td>-->
+<!--                    <td>{{ item.DebitAmount }}</td>-->
+<!--                    <td>{{ item.CreditAmount }}</td>-->
+<!--                    <td>{{ item.ClosingBalance }}</td>-->
+<!--                    <td>{{ item.Company }}</td>-->
+<!--                </tr>-->
+<!--            {% endfor %}-->
+<!--        </table>-->
+<!--    {% else %}-->
+<!--        <p>No Trial Balance data available.</p>-->
+<!--    {% endif %}-->
+<!--    <a href="/company-list" class="back-button">Back to Company List</a>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Details</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        h2 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>{{ company_name }} - Financial Details</h1>
+
+    <!-- Balance Sheet Table -->
+    <h2>Balance Sheet</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Parent</th>
+                <th>Closing Balance</th>
+                <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in balance_sheet %}
+            <tr>
+                <td>{{ row.Name }}</td>
+                <td>{{ row.Parent }}</td>
+                <td>{{ row.ClosingBalance }}</td>
+                <td>{{ row.Company }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Profit & Loss Table -->
+    <h2>Profit & Loss</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Primary Group</th>
+                <th>Closing Balance</th>
+                <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in profit_loss %}
+            <tr>
+                <td>{{ row.Name }}</td>
+                <td>{{ row._PrimaryGroup }}</td>
+                <td>{{ row.ClosingBalance }}</td>
+                <td>{{ row.Company }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Trial Balance Table -->
+    <h2>Trial Balance</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Primary Group</th>
+                <th>Opening Balance</th>
+                <th>Debit Amount</th>
+                <th>Credit Amount</th>
+                <th>Closing Balance</th>
+                <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in trial_balance %}
+            <tr>
+                <td>{{ row.Name }}</td>
+                <td>{{ row._PrimaryGroup }}</td>
+                <td>{{ row.OpeningBalance }}</td>
+                <td>{{ row.DebitAmount }}</td>
+                <td>{{ row.CreditAmount }}</td>
+                <td>{{ row.ClosingBalance }}</td>
+                <td>{{ row.Company }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Voucher Table -->
+    <h2>Vouchers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Voucher Type</th>
+                <th>Date</th>
+                <th>Voucher Number</th>
+                <th>Party Ledger</th>
+                <th>Amount</th>
+                <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in voucher %}
+            <tr>
+                <td>{{ row.VoucherTypeName }}</td>
+                <td>{{ row.Date }}</td>
+                <td>{{ row.VoucherNumber }}</td>
+                <td>{{ row.PartyLedgerName }}</td>
+                <td>{{ row.Amount }}</td>
+                <td>{{ row.Company }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Day Book Table -->
+    <h2>Day Book</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Voucher Type</th>
+                <th>Voucher Number</th>
+                <th>Narration</th>
+                <th>Amount</th>
+                <th>Company</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in day_book %}
+            <tr>
+                <td>{{ row.Date }}</td>
+                <td>{{ row.VoucherTypeName }}</td>
+                <td>{{ row.VoucherNumber }}</td>
+                <td>{{ row.Narration }}</td>
+                <td>{{ row.Amount }}</td>
+                <td>{{ row.Company }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
